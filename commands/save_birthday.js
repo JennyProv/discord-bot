@@ -6,21 +6,23 @@ const file = './birthdays.txt';
 
 exports.run = async (bot,message,args) => {
 console.log(args);
-if (args.length !== 2) {
-    const channelMessage = new Discord.MessageEmbed().setTitle('ich erwarte mindestens zwei Argumente: zuerst das Datum, dann die getaggte Person für die ich das Geburtsdatum speichern soll :3')
+if (args.length !== 1) {
+    const channelMessage = new Discord.MessageEmbed().setTitle('ich erwarte mindestens ein Argument: dein Geburtstag :3')
     message.reply(channelMessage);
     return;
 }
 
 if (!(moment(args[0], 'DD.MM.YYYY',true).isValid())) {
-    const channelMessage = new Discord.MessageEmbed().setTitle('Es scheint als wäre dein erstes Agument kein valides Datum uwu')
+    const channelMessage = new Discord.MessageEmbed().setTitle('Es scheint als wäre dein Uwument kein valides Datum. Bitte wie folgt: mm.dd.yyyy')
     message.reply(channelMessage);
     return;
 }
-var userId = args[1].replace( /^\D+/g, '').slice(0, -1);
+var userId = message.author.id;
+console.log(userId)
+
 
 if (!(bot.users.cache.find(user => user.id === userId))) {
-    const channelMessage = new Discord.MessageEmbed().setTitle('Tut mir leid, doch ich glaube dies ist kein treuer Untertan von Lord buttert0ast')
+    const channelMessage = new Discord.MessageEmbed().setTitle('Tut mir leid, doch ich glaube du bist kein treuer Untertan von Lord buttert0ast')
     message.reply(channelMessage);
     return;   
 }

@@ -1,1 +1,0 @@
-//TODO: Todesart beschreiben + todestag random. 
